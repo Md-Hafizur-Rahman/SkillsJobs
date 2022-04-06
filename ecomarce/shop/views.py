@@ -10,7 +10,7 @@ def categories(request):
     context = {
          'categories': p,   # 'function':variable
      }
-    return render(request, 'index.html', context)
+    return render(request, 'index.html', context=context)
 
 def select_category(request):
     category = Category.objects.filter(cat_name__startswith = "women")
@@ -38,3 +38,11 @@ def not_product(request):
     print(p)
     print(p.query)
     return render(request, 'index.html', {'p': p})
+def detail(req):
+    categories = Category.objects.all()
+    product = Product.objects.all()
+    context = {
+         'categories': categories,
+         'product':product  
+     }
+    return render(req, 'index.html', context=context)
